@@ -143,8 +143,9 @@
 
 <!-- 3. 실패 화면 구역 -->
 <div id="fail-overlay" onclick="closeFail()">
-    <div style="text-align: center;">
-        <div style="font-family: 'Roboto Mono', monospace; font-weight: 900; font-size: 2em; color: #ff1a1a; text-shadow: 0 0 20px #ff0000;">TARGET LOST</div>
+    <!-- 여기에 class="fail-box"를 넣어줘야 네온 테두리가 나타납니다! -->
+    <div class="fail-box">
+        <div style="font-family: 'Roboto Mono', monospace; font-weight: 900; font-size: 2em; color: #ff1a1a; text-shadow: 0 0 20px #ff0000; margin-bottom: -10px;">TARGET LOST</div>
         <div style="font-size: 2.5em; font-weight: 800; color: #ff1a1a; text-shadow: 0 0 15px #ff0000; margin: 0;">검거 ⚠ 실패</div>
         <div style="margin-top: 20px; font-size: 0.9em; color: #880000; letter-spacing: 1px;">목표가 시공간 좌표에서 도주했습니다</div>
     </div>
