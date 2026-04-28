@@ -152,34 +152,29 @@
     </div>
 </div>
 <!-- 여기서부터 끝까지 덮어쓰기 하세요 -->
-<div id="content" style="display:none; text-align: center; padding-top: 50px;">
-    <!-- 진운의 대사가 타이핑될 구역 -->
-    <div id="typing-text" style="color: #ffffff; font-family: 'Nanum Square Round', sans-serif; font-weight: 300; font-size: 1.2em; letter-spacing: 1.5px; min-height: 1.5em; text-shadow: 0 0 5px rgba(255,255,255,0.5);"></div>
-    
-    <!-- 타이핑 종료 후 나타날 메뉴 (일단은 숨김 상태) -->
-    <div id="main-menu" style="display:none; margin-top: 40px; border-top: 1px solid #333; pt: 20px;">
-        <h1 style="color: #ff1a1a; font-size: 1.3em; letter-spacing: 2px;">보관소 데이터 로드 완료</h1>
-        <p style="color: #666; font-size: 0.8em;">(이곳에 나중에 게시판 메뉴가 들어갑니다)</p>
-    </div>
+<div id="content" style="display:none; text-align: center; padding-top: 15vh;">
+    <!-- 진운의 대사만 깔끔하게 출력 -->
+    <div id="typing-text" style="color: #ffffff; font-family: 'Nanum Square Round', sans-serif; font-weight: 300; font-size: 1.3em; letter-spacing: 1.5px; min-height: 1.5em; text-shadow: 0 0 8px rgba(255,255,255,0.4);"></div>
 </div>
 
 <script>
-    // 타이핑 효과를 만드는 마법 같은 함수
     function typeWriter(text, elementId, speed) {
         let i = 0;
         const element = document.getElementById(elementId);
-        element.innerHTML = ""; // 칸 비우기
+        element.innerHTML = ""; 
         
         function type() {
             if (i < text.length) {
                 element.innerHTML += text.charAt(i);
                 i++;
-                setTimeout(type, speed); // speed(밀리초) 간격으로 한 글자씩 출력
+                setTimeout(type, speed);
             } else {
-                // 글자가 다 써지면 0.8초 뒤에 아래 메뉴를 서서히 보여줌
+                // 타이핑이 끝난 후 1.5초 뒤에 다음 페이지로 이동
                 setTimeout(() => {
-                    document.getElementById("main-menu").style.display = "block";
-                }, 800);
+                    // 지금은 이동할 페이지가 없으므로 알림창만 띄우거나 아래처럼 주석 처리합니다.
+                    // window.location.href = "main.html"; 
+                    console.log("메인 페이지로 이동 준비 완료");
+                }, 1500);
             }
         }
         type();
@@ -188,13 +183,12 @@
     function checkPw() {
         const pw = document.getElementById("pw-input").value;
         if (pw === "0130") {
-            // 로그인창 숨기고 콘텐츠 창 열기
             document.getElementById("login-container").style.display = "none";
             document.getElementById("content").style.display = "block";
             document.body.style.background = "#050505";
             
-            // 암호가 맞으면 타이핑 시작! (속도: 150은 보통, 숫자가 작을수록 빨라짐)
-            typeWriter("이번엔 나한테 쉽게 잡히지 마.", "typing-text", 150);
+            // 진운의 대사 타이핑 시작
+            typeWriter("이번엔 나한테 쉽게 잡히지 마.", "typing-text", 130);
         } else {
             document.getElementById("fail-overlay").style.display = "flex";
         }
@@ -206,7 +200,6 @@
         document.getElementById("pw-input").focus();
     }
 
-    // 엔터키 지원
     document.getElementById("pw-input").addEventListener("keyup", function(event) {
         if (event.key === "Enter") checkPw();
     });
